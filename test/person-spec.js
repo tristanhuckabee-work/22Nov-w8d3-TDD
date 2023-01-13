@@ -17,7 +17,6 @@ describe('Person', function () {
       expect(person.age).to.equal(23);
     })
   })
-
   context('sayHello()', () => {
     it('returns the name in a greeting', () => {
       expect(person.sayHello()).to.equal(`Hi, I am John Doe.`)
@@ -58,20 +57,27 @@ describe('Person', function () {
     })
   })
   context('tryUpdate(obj)', () => {
-    context('', () => {
-      it('', () => {
+    context('update was successful', () => {
+      it('should return true', () => {
+        const testObj1 = { name: 'Greg', age: 18 }
+        const testObj2 = { name: 'Brady', age: 669 }
 
+        expect(person.tryUpdate(testObj1)).to.equal(true);
+        expect(person.tryUpdate(testObj2)).to.equal(true);
       })
     })
-    context('', () => {
-      it('', () => {
-
+    context('update was unsuccessful', () => {
+      it('should return false', () => {
+        expect(person.tryUpdate(45)).to.equal(false)
+        expect(person2.tryUpdate('name')).to.equal(false);
       })
     })
   })
   context('greetAll(obj)', () => {
-    it('', () => {
+    it('should return an array of greetings', () => {
+      let greetingArray = [person.sayHello(), person2.sayHello()];
 
+      expect(Person.greetAll([person, person2])).to.eql(greetingArray)
     })
   })
 })

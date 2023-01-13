@@ -12,7 +12,7 @@ class Person {
   switchVisit(person) {
     return person.visit(this);
   }
-  update(obj){
+  update(obj) {
     if ( typeof obj === 'object') {
       if (!obj.name || !obj.age) {
         throw new TypeError('Input must have a name and age')
@@ -25,6 +25,20 @@ class Person {
       throw new TypeError('Input must be an object')
     }
 
+  }
+  tryUpdate(obj) {
+    let res = true;
+
+    try {
+      this.update(obj)
+    } catch (err) {
+      res = false;
+    }
+
+    return res;
+  }
+  static greetAll(arr) {
+    return arr.map( person => person.sayHello() );
   }
 }
 
